@@ -30,7 +30,7 @@ app.use('/users', usersRouter);
 //     });
 // });
 
-socket.on('chat',(message)=>{
+io.on('chat',(message)=>{
     console.log('message: '+ message);
     io.emit('message', message);
 }); 
