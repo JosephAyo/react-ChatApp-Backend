@@ -33,7 +33,11 @@ app.use('/users', usersRouter);
 io.on('chat',(message)=>{
     console.log('message: '+ message);
     io.emit('message', message);
-}); 
+});
+
+io.on('channel1', (data) => {
+    console.log('Greetings from RN app', data);
+  })
 
 const port = process.env.PORT || 5500;
 
