@@ -19,25 +19,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// io.on('connection',(socket)=>{
-//     console.log('a user connected');
-//     socket.on('chat',(message)=>{
-//         console.log('message: '+ message);
-//         io.emit('message', message);
-//     });
-//     socket.on('disconnect', ()=>{
-//         console.log('user disconnected');
-//     });
-// });
+io.on('connection',(socket)=>{
+    console.log('a user connected');
+    socket.on('chat',(message)=>{
+        console.log('message: '+ message);
+        io.emit('message', message);
+    });
+    socket.on('disconnect', ()=>{
+        console.log('user disconnected');
+    });
 
-io.on('chat',(message)=>{
-    console.log('message: '+ message);
-    io.emit('message', message);
-});
-
-io.on('channel1', (data) => {
+    
+socket.on('channel1', (data) => {
     console.log('Greetings from RN app', data);
   })
+});
+
+
 
 const port = process.env.PORT || 5500;
 
