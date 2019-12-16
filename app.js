@@ -25,6 +25,11 @@ io.on('connection',(socket)=>{
         console.log('message: '+ message);
         io.emit('message', message);
     });
+
+    socket.on('typingEvent',text=>{
+        socket.broadcast.emit('typing',text);
+    });
+
     socket.on('disconnect', ()=>{
         console.log('user disconnected');
     });
